@@ -1,0 +1,33 @@
+<ion-header>
+
+    <link href="//code.ionicframework.com/nightly/css/ionic.css" rel="stylesheet">
+    <script src="//code.ionicframework.com/nightly/js/ionic.bundle.js"></script>
+
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+        <ion-title>
+            Lista
+        </ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <div class="row header">
+        <div class="col">Nombre</div>
+        <div class="col">Apellido</div>
+        <div class="col">Rut</div>
+        <div class="col">Fecha</div>
+        <div class="col"></div>
+    </div>
+    <div class="row" *ngFor="let data of personal">
+        <div class="col">{{data.nombre}}</div>
+        <div class="col">{{data.apellido}}</div>
+        <div class="col">{{data.rut}}</div>
+        <div class="col">{{data.fechaNacimiento}}</div>
+        <div class="col"><button class="button" (click)="consultaDetalle(data)">Detalle</button></div>
+    </div>
+</ion-content>
+Rut de usuario es: {{valida}}
+{{fecha}}
