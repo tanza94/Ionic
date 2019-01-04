@@ -71,6 +71,7 @@ export class ListPage implements OnInit {
     var year = fechaf[2];
 
         // Verifica que dia, mes, año, solo sean numeros
+        //tira error
     var error = ((day.isInteger) || (month.isInteger) || (year.isNumber));
 
     // Lista de dias en los meses, por defecto no es año bisiesto
