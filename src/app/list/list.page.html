@@ -19,15 +19,42 @@
         <div class="col">Apellido</div>
         <div class="col">Rut</div>
         <div class="col">Fecha</div>
+        <div class="col">Telefono</div>
+        <div class="col">Direccion</div>
         <div class="col"></div>
     </div>
-    <div class="row" *ngFor="let data of personal">
+    <div class="row" *ngFor="let data of personal" style="">
         <div class="col">{{data.nombre}}</div>
         <div class="col">{{data.apellido}}</div>
-        <div class="col">{{data.rut}}</div>
-        <div class="col">{{data.fechaNacimiento}}</div>
-        <div class="col"><button class="button" (click)="consultaDetalle(data)">Detalle</button></div>
+        <div class="col">{{data.rut}}</div>       
+        <div class="col">{{data.fechaNacimiento}}</div>        
+        <div class="col">{{data.telefono}}</div>
+        <div class="col">{{data.direccion.calle}} {{data.direccion.numero}}  {{data.direccion.comuna}}</div>
+        <div class="col"><button class="button" (click)="consultaDetalle(data)" >Detalle</button></div>
+    </div>
+
+
+
+
+
+    <div class="panel panel-default panel-danger">
+        <div class="panel-body">
+           <h3> {{valida}}</h3>
+            <h3>{{fecha}}</h3>
+        </div>
     </div>
 </ion-content>
-Rut de usuario es: {{valida}}
-{{fecha}}
+
+
+ <!--
+     "id": 1,
+    "nombre": "Omar",
+    "apellido": "Trapaga",
+    "telefono": 56221984968,
+    "rut": "21984968-0",
+    "fechaNacimiento": "12/05/1982",
+    "direccion": {
+      "calle": "Av. Matta",
+      "numero": 143,
+      "comuna": "Santiago" 
+ -->

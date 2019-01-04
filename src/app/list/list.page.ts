@@ -1,6 +1,8 @@
 ﻿import { Component, OnInit, Pipe, PipeTransform } from '@angular/core';
 import { ProviderService } from '../provider.service';
 import { CommonModule } from '@angular/common';
+import { DetallePage } from '../detalle/detalle.page';
+import { NavController } from "@ionic/angular/dist";
 
 
 @Component({
@@ -10,11 +12,12 @@ import { CommonModule } from '@angular/common';
     providers: [ProviderService]
 })
 export class ListPage implements OnInit {
+    detallePage = "DetallePage";
     personal = []
     valida: string;
     fecha: string;
 
-    constructor(public proveedor: ProviderService) { }
+    constructor(public proveedor: ProviderService, public navCtrl: NavController) { }
 
     ngOnInit() {
         this.proveedor.ObtenerDatos().subscribe(datos => {
@@ -23,13 +26,25 @@ export class ListPage implements OnInit {
     }
 
     consultaDetalle(usuario) {
-        this.validaRut(usuario.rut);
+      // this.navCtrl.push("DetallePage");
 
-        if (this.existeFecha(usuario.fechaNacimiento)){ this.fecha = 'ok'}else {this.fecha = 'mal'}
+        try {
+
+            this.validaRut(usuario.rut);// el metodo no funciona bien
+
+            if (this.existeFecha(usuario.fechaNacimiento)) { this.fecha = ' fecha ok' } else { this.fecha = ' fecha mala' }
+
+        } catch ( a) {
+
+        }
     }
-    
+
+
+
+
+
+
     validaRut(rut) {
-        rut = '18210645-3';
 
         rut.substr(1,2);
 
@@ -55,46 +70,55 @@ export class ListPage implements OnInit {
         else if (dv == 11 && verif == 0)
             this.valida = 'rut ok';
         else if (dv == verif)
-            this.valida = 'rut ok';
+            this.valida = ' El Rut esta ok';
         else
-            this.valida = 'rut malo';
+            this.valida = 'El rut esta malo';
     }
 
 
 
 
     existeFecha(fecha) {
-        debugger
-    var fechaf = fecha.split("/");
-    var day = fechaf[0];
-    var month = fechaf[1];
-    var year = fechaf[2];
+        if (fecha.length == 10) {
+            var fechaf = fecha.split("/");
+            var dayAux = fechaf[0];
+            if (dayAux.charAt(0) == "0") { var day: number = dayAux.substring(1); } else { var day: number = dayAux; }
 
-        // Verifica que dia, mes, año, solo sean numeros
-        //tira error
-    var error = ((day.isInteger) || (month.isInteger) || (year.isNumber));
+            var monthAux = fechaf[1];
+            if (monthAux.charAt(0) == "0") { var month: number = monthAux.substring(1); } else { var month: number = monthAux; }
 
-    // Lista de dias en los meses, por defecto no es año bisiesto
-    var ListofDays = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
-    if (month === 1 || month > 2)
-        if (day > ListofDays[month - 1] || day < 0 || ListofDays[month - 1] === undefined)
-            error = true;
+            var year = fechaf[2];
 
-    // Detecta si es año bisiesto y asigna a febrero 29 dias
-    if (month === 2) {
-        var lyear = ((!(year % 4) && year % 100) || !(year % 400));
-        if (lyear === false && day >= 29)
-            error = true;
-        if (lyear === true && day > 29)
-            error = true;
+            // Lista de dias en los meses, por defecto no es año bisiesto
+            var ListofDays = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+            if (month === 1 || month > 2)
+                if (day > ListofDays[month - 1] || day < 0 || ListofDays[month - 1] === undefined)
+                    var error = true;
+
+            // Detecta si es año bisiesto y asigna a febrero 29 dias
+            if (month === 2) {
+                var lyear = ((!(year % 4) && year % 100) || !(year % 400));
+                if (lyear === false && day >= 29)
+                    error = true;
+                if (lyear === true && day > 29)
+                    error = true;
+            }
+
+            if (error === true) {
+                return false;
+            }
+            else
+
+                return true;
+
+        }
+        else { return false }
     }
+    
 
-    if (error === true) {
-        return false;
-    }
-    else
 
-    return true;
-}
+    
+
+
 
 }
