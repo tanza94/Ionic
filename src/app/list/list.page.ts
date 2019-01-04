@@ -1,6 +1,6 @@
 ﻿import { Component, OnInit, Pipe, PipeTransform } from '@angular/core';
 import { ProviderService } from '../provider.service';
-
+import { CommonModule } from '@angular/common';
 
 
 @Component({
