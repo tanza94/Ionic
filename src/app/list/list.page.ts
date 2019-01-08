@@ -2,7 +2,7 @@
 import { ProviderService } from '../provider.service';
 import { CommonModule } from '@angular/common';
 import { DetallePage } from '../detalle/detalle.page';
-import { NavController } from "@ionic/angular/dist";
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -17,7 +17,7 @@ export class ListPage implements OnInit {
     valida: string;
     fecha: string;
 
-    constructor(public proveedor: ProviderService, public navCtrl: NavController) { }
+    constructor(public proveedor: ProviderService, public router: Router) { }
 
     ngOnInit() {
         this.proveedor.ObtenerDatos().subscribe(datos => {
@@ -26,7 +26,6 @@ export class ListPage implements OnInit {
     }
 
     consultaDetalle(usuario) {
-      // this.navCtrl.push("DetallePage");
 
         try {
 
@@ -34,6 +33,7 @@ export class ListPage implements OnInit {
 
             if (this.existeFecha(usuario.fechaNacimiento)) { this.fecha = ' fecha ok' } else { this.fecha = ' fecha mala' }
 
+            this.router.navigate(['detalle']);
         } catch ( a) {
 
         }

@@ -15,7 +15,7 @@ export class DetallePage implements OnInit {
     constructor(public proveedor: ProviderService) { }
 
   ngOnInit() {
-      this.proveedor.ObtenerDatos().subscribe(datos => {  this.personal = datos; });
+      //this.proveedor.ObtenerDatos().subscribe(datos => {  this.personal = datos; });
 
   }
 
