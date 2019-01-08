@@ -26,7 +26,6 @@ export class ListPage implements OnInit {
     }
 
     consultaDetalle(usuario) {
-
         try {
 
             this.validaRut(usuario.rut);// el metodo no funciona bien

@@ -13,9 +13,19 @@
     </ion-toolbar>
 </ion-header>
 
+
+<h3>Pagina detalle</h3>
+
 <ion-content padding>
-    <h3>Pagina detalle</h3>
+    
+    <ion-list>
+        <button ion-item *ngFor="let item of personal" (click)="itemSelected(item)">
+            {{ item.id }}
 
+            {{ item.id }}
 
-
+            {{ item.id }}
+        </button>
+    </ion-list>
+    
 </ion-content>
