@@ -13,27 +13,28 @@ import { Router } from '@angular/router';
 })
 export class ListPage implements OnInit {
     detallePage = "DetallePage";
-    personal = []
+    personal: any;
     valida: string;
     fecha: string;
-
+    id;
     constructor(public proveedor: ProviderService, public router: Router) { }
 
     ngOnInit() {
         this.proveedor.ObtenerDatos().subscribe(datos => {
             this.personal = datos;
         });
+
     }
 
     consultaDetalle(usuario) {
         try {
 
-            this.validaRut(usuario.rut);// el metodo no funciona bien
+            // this.validaRut(usuario.rut);// el metodo no funciona bien
 
-            if (this.existeFecha(usuario.fechaNacimiento)) { this.fecha = ' fecha ok' } else { this.fecha = ' fecha mala' }
+            // if (this.existeFecha(usuario.fechaNacimiento)) { this.fecha = ' fecha ok' } else { this.fecha = ' fecha mala' }
 
-            this.router.navigate(['detalle']);
-        } catch ( a) {
+            this.router.navigate(['/detalle', { rut: usuario.rut, fecha: usuario.fechaNacimiento }]);
+        } catch (a) {
 
         }
     }
@@ -45,7 +46,7 @@ export class ListPage implements OnInit {
 
     validaRut(rut) {
 
-        rut.substr(1,2);
+        rut.substr(1, 2);
 
         this.valida = '';
         var suma = 0;
@@ -113,10 +114,10 @@ export class ListPage implements OnInit {
         }
         else { return false }
     }
-    
 
 
-    
+
+
 
 
 

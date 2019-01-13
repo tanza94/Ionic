@@ -26,27 +26,23 @@
     <div class="row" *ngFor="let data of personal" style="">
         <div class="col">{{data.nombre}}</div>
         <div class="col">{{data.apellido}}</div>
-        <div class="col">{{data.rut}}</div>       
-        <div class="col">{{data.fechaNacimiento}}</div>        
+        <div class="col">{{data.rut}}</div>
+        <div class="col">{{data.fechaNacimiento}}</div>
         <div class="col">{{data.telefono}}</div>
-        <div class="col">{{data.direccion.calle}} {{data.direccion.numero}}  {{data.direccion.comuna}}</div>
-        <div class="col"><button class="button" (click)="consultaDetalle(data)" >Detalle</button></div>
+        <div class="col">{{data.direccion.calle}} {{data.direccion.numero}} {{data.direccion.comuna}}</div>
+        <div class="col"><button class="button" (click)="consultaDetalle(data)">Detalle</button></div>
     </div>
-
-
-
-
 
     <div class="panel panel-default panel-danger">
         <div class="panel-body">
-           <h3> {{valida}}</h3>
+            <h3> {{valida}}</h3>
             <h3>{{fecha}}</h3>
         </div>
     </div>
 </ion-content>
 
 
- <!--
+<!--
      "id": 1,
     "nombre": "Omar",
     "apellido": "Trapaga",
